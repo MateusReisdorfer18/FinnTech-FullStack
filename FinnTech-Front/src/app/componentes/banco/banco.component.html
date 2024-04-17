@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="listar-todos">
+        <button (click)="this.listarTodos()">Listar todos os Bancos</button>
+        <div *ngIf="this.statusListar">
+            <ul *ngFor="let banco of this.bancos">
+                <li>
+                    <p>
+                        Banco: {{ banco.nome }}
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="buscar-por_id">
+        <form>
+            <input type="text" placeholder="Digite o Id do Banco" [(ngModel)]="idBanco" name="id-banco">
+            <button (click)="this.buscarPorId()">Enviar</button>
+        </form>
+        <div *ngIf="this.exibirBanco" class="banco-encontrado">
+            <button (click)="this.fecharBancoEncontrado()">X</button>
+                <p>
+                    Banco: {{ banco.nome }}
+                </p>
+        </div>
+    </div>
+
+    <div>
+        <form>
+            <h2>Crie um novo banco!</h2>
+            <input type="text" placeholder="Digite o nome do Banco" [(ngModel)]="this.nomeBanco" name="nome-banco">
+            <button (click)="this.cadastrar()">Enviar</button>
+        </form>
+    </div>
+</div>
