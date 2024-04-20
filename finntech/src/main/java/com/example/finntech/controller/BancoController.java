@@ -38,7 +38,7 @@ public class BancoController {
         }
     }
 
-    @PostMapping("/cadastro")
+    @PostMapping("/cadastrar")
     public ResponseEntity<Banco> cadastrar(@RequestBody @Valid BancoRecordDTO bancoRecordDTO) {
         try {
             return new ResponseEntity<>(bancoServiceIMPL.cadastrar(bancoRecordDTO), HttpStatus.CREATED);

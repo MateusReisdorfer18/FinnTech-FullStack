@@ -1,6 +1,7 @@
 package com.example.finntech.controller;
 
 import com.example.finntech.DTO.ContaRecordDTO;
+import com.example.finntech.DTO.TransacaoRecordDTO;
 import com.example.finntech.service.ContaServiceIMPL;
 import com.example.finntech.entity.Conta;
 import jakarta.validation.Valid;
@@ -29,11 +30,20 @@ public class ContaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Conta> buscarPorId(@PathVariable("Id")UUID id) {
+    public ResponseEntity<Conta> buscarPorId(@PathVariable("id")UUID id) {
         try {
             return new ResponseEntity<>(contaServiceIMPL.buscarPorId(id), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/numero/{numero}")
+    public ResponseEntity<Conta> buscarPorNumero(@PathVariable("numero") Integer numero) {
+        try {
+            return new ResponseEntity<>(contaServiceIMPL.buscarPorNumero(numero), HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
@@ -55,6 +65,26 @@ public class ContaController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/acoes/deposito/{id}")
+    public ResponseEntity<Boolean> depositar(@RequestBody @Valid TransacaoRecordDTO transacaoRecordDTO, @PathVariable("id") UUID id) {
+        try {
+            return new ResponseEntity<>(contaServiceIMPL.depositar(transacaoRecordDTO.valor(), id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/acoes/sacar/id/{id}")
+    public ResponseEntity<Boolean> sacar(@RequestBody @Valid TransacaoRecordDTO transacaoRecordDTO, @PathVariable("id") UUID id) {
+        try {
+            return new ResponseEntity<>(contaServiceIMPL.sacar(transacaoRecordDTO.valor(), id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -25,9 +25,49 @@ public class ContaServiceIMPL {
         }
     }
 
+    public Boolean depositar(Double valor, UUID id) {
+        try {
+            Optional<Conta> conta = contaRepository.findById(id);
+            if(conta.isEmpty())
+                return false;
+
+            conta.get().setSaldo(conta.get().getSaldo() + valor);
+            contaRepository.updateSaldo(conta.get().getSaldo(), id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean sacar(Double valor, UUID id) {
+        try {
+            Optional<Conta> conta = contaRepository.findById(id);
+            if(conta.isEmpty())
+                return false;
+
+            conta.get().setSaldo(conta.get().getSaldo() - valor);
+            contaRepository.updateSaldo(conta.get().getSaldo(), id);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public Conta buscarPorId(UUID id) {
         try {
             Optional<Conta> conta = contaRepository.findById(id);
+            return conta.orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Conta buscarPorNumero(Integer numero) {
+        try {
+            Optional<Conta> conta = contaRepository.findByNumero(numero);
             return conta.orElse(null);
         } catch (Exception e) {
             e.printStackTrace();

@@ -2,7 +2,9 @@ package com.example.finntech.service;
 
 import com.example.finntech.DTO.ClienteRecordDTO;
 import com.example.finntech.entity.Cliente;
+import com.example.finntech.entity.Conta;
 import com.example.finntech.repository.ClienteRepository;
+import com.example.finntech.repository.ContaRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

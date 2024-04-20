@@ -22,6 +22,6 @@ public class Cliente {
     private String email;
     private String cpf;
 
-    @OneToMany
+    @ManyToMany
     private List<Conta> contas = new ArrayList<>();
 }

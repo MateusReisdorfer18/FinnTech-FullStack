@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tipo-pagamento")
+@Table(name = "tipo_pagamento")
 @Getter @Setter @NoArgsConstructor
 public class TipoPagamento {
     @Id

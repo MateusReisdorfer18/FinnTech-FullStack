@@ -18,13 +18,13 @@ public class Pagamento {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     private TipoPagamento tipoPagamento;
 
-    @OneToOne
+    @ManyToOne
     private Conta rementente;
 
-    @OneToOne
+    @ManyToOne
     private Conta destinatario;
     private Double valor;
 

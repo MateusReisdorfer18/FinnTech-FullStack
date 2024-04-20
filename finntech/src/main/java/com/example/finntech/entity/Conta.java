@@ -19,19 +19,19 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
     private UUID id;
-    private Integer numero = new Random().nextInt();
+    private Integer numero = new Random().nextInt(1000000000);
 
-    @OneToOne
+    @ManyToOne
     private Cliente cliente;
 
-    @OneToOne
+    @ManyToOne
     private TipoConta tipoConta;
     private Double saldo = 0.0;
     private Double limite = 0.0;
 
-    @OneToOne
+    @ManyToOne
     private Banco banco;
 
-    @OneToMany
+    @ManyToMany
     private List<Pagamento> extrato = new ArrayList<>();
 }

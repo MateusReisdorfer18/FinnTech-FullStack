@@ -1,6 +1,7 @@
 package com.example.finntech.controller;
 
 import com.example.finntech.DTO.ClienteRecordDTO;
+import com.example.finntech.entity.Conta;
 import com.example.finntech.service.ClienteServiceIMPL;
 import com.example.finntech.entity.Cliente;
 import jakarta.validation.Valid;
