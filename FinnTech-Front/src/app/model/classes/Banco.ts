@@ -1,4 +1,4 @@
-import { IBanco } from "./IBanco";
+import { IBanco } from "../interfaces/IBanco";
 
 export class Banco implements IBanco {
     id!: String;

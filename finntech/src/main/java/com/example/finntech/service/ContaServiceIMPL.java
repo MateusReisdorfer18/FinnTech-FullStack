@@ -2,7 +2,9 @@ package com.example.finntech.service;
 
 import com.example.finntech.DTO.ContaRecordDTO;
 import com.example.finntech.entity.Conta;
+import com.example.finntech.entity.Pagamento;
 import com.example.finntech.repository.ContaRepository;
+import com.example.finntech.repository.PagamentoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +18,25 @@ public class ContaServiceIMPL {
     @Autowired
     private ContaRepository contaRepository;
 
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
+
     public List<Conta> listarTodos() {
         try {
             return contaRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Pagamento> listarPagamentos(UUID id) {
+        try {
+            Optional<Conta> conta = contaRepository.findById(id);
+            if(conta.isEmpty())
+                return null;
+
+            return pagamentoRepository.findByRemetenteOrDestinatario(conta.get());
         } catch (Exception e) {
             e.printStackTrace();
             return null;

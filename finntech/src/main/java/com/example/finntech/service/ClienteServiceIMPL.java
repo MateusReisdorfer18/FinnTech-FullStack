@@ -18,9 +18,25 @@ public class ClienteServiceIMPL {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private ContaRepository contaRepository;
+
     public List<Cliente> listarTodos() {
         try {
             return clienteRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Conta> buscarContasPorCliente(UUID id) {
+        try {
+            Optional<Cliente> cliente = clienteRepository.findById(id);
+            if(cliente.isEmpty())
+                return null;
+
+            return contaRepository.findAllConta(cliente.get());
         } catch (Exception e) {
             e.printStackTrace();
             return null;

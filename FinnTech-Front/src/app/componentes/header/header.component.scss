@@ -1,0 +1,101 @@
+.body {
+    background-color: gray;
+    border: 1px solid #000;
+    color: #fff;
+    width: 30%;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+
+    .saudacao {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+
+        .div-image {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+
+            img {
+                width: 100%;
+                background-color: #fff;
+                border-radius: 2rem;
+            }
+        }
+
+        .div-texto {
+            width: 80%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto 0;
+            padding: 2.7rem 1rem;
+
+            h2 {
+                font-size: 2.5rem;
+                padding-bottom: 1rem;
+            }
+        }
+    }
+
+    .div-saldo {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+        ul {
+            list-style-type: none;
+            background-color: #fff;
+            color: #000;
+            width: 65%;
+            border-radius: 2rem;
+            padding: 1rem;
+            margin: 1rem;
+
+            .titulo {
+                padding-bottom: 1.5rem;
+
+                h2 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            .conteudo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    margin-right: 1rem;
+                    padding: .3rem .5rem;
+                    border: none;
+                    background-color: transparent;
+                    border-radius: .5rem;
+                    cursor: pointer;
+                    box-shadow: .1rem .1rem .8rem #000;
+                }
+
+                button:hover {
+                    transition: .3s;
+                    background-color: #000;
+                    color: #fff;
+                }
+
+                p {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}

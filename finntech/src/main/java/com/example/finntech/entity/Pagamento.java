@@ -22,7 +22,7 @@ public class Pagamento {
     private TipoPagamento tipoPagamento;
 
     @ManyToOne
-    private Conta rementente;
+    private Conta remetente;
 
     @ManyToOne
     private Conta destinatario;

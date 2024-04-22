@@ -2,6 +2,7 @@ package com.example.finntech.controller;
 
 import com.example.finntech.DTO.ContaRecordDTO;
 import com.example.finntech.DTO.TransacaoRecordDTO;
+import com.example.finntech.entity.Pagamento;
 import com.example.finntech.service.ContaServiceIMPL;
 import com.example.finntech.entity.Conta;
 import jakarta.validation.Valid;
@@ -44,6 +45,16 @@ public class ContaController {
         try {
             return new ResponseEntity<>(contaServiceIMPL.buscarPorNumero(numero), HttpStatus.OK);
         } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/acoes/listarpagamentos/{id}")
+    public ResponseEntity<List<Pagamento>> listarPagamento(@PathVariable("id") UUID id) {
+        try {
+            return new ResponseEntity<>(contaServiceIMPL.listarPagamentos(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }

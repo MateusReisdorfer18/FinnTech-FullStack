@@ -4,6 +4,7 @@ import com.example.finntech.DTO.ClienteRecordDTO;
 import com.example.finntech.entity.Conta;
 import com.example.finntech.service.ClienteServiceIMPL;
 import com.example.finntech.entity.Cliente;
+import com.example.finntech.service.ContaServiceIMPL;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,16 @@ public class ClienteController {
     public ResponseEntity<Cliente> buscarPorId(@PathVariable("id")UUID id) {
         try {
             return new ResponseEntity<>(clienteServiceIMPL.buscarPorId(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/listarcontas/{id}")
+    public ResponseEntity<List<Conta>> buscarContasPorCliente(@PathVariable("id") UUID id) {
+        try {
+            return new ResponseEntity<>(clienteServiceIMPL.buscarContasPorCliente(id), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="saudacao">
+        <div class="div-image">
+            <img src="../../../assets/img/user.svg" alt="">
+        </div>
+        <div class="div-texto">
+            <h2>Seja Bem Vindo de Volta {{ nome }}!</h2>
+            <p>Veja seu saldo, pague usando o pix e muito mais!</p>
+        </div>
+    </div>
+    <div class="div-saldo">
+        <ul>
+            <li class="titulo">
+                <h2>Saldo</h2>
+            </li>
+            <li class="conteudo">
+                <button (click)="this.verContas()">O</button>
+                <p>R$ {{ saldo }}</p>
+            </li>
+        </ul>
+    </div>
+</div>

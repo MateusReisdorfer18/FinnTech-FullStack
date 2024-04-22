@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BancoComponent } from './componentes/banco/banco.component';
+import { HeaderComponent } from './componentes/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BancoComponent
+    BancoComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

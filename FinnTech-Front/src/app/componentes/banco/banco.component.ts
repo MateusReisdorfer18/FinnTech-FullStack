@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IBanco } from './IBanco';
+import { IBanco } from '../../model/interfaces/IBanco';
 import { BancoService } from './banco.service';
-import { Banco } from './Banco';
+import { Banco } from '../../model/classes/Banco';
 import { FormGroup } from '@angular/forms';
 
 @Component({

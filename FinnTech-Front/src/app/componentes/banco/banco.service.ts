@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { IBanco } from './IBanco';
-import { Banco } from './Banco';
+import { IBanco } from '../../model/interfaces/IBanco';
+import { Banco } from '../../model/classes/Banco';
 
 @Injectable({
   providedIn: 'root'
