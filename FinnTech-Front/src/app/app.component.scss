@@ -1,9 +1,13 @@
-.main {
-    height: 50vw;
+main {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: start;
     padding: 1.5rem;
+
+    .login {
+        margin: auto 0;
+    }
 
     header {
         width: 100%;

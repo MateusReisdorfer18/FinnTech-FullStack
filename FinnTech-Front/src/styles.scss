@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../src/assets/fonts.scss";
+
 html {
     font-size: 62.5%;
 }
@@ -8,4 +10,10 @@ html {
     font-size: 1.6rem;
     margin: 0;
     padding: 0;
+    font-family: $font-family;
+    font-weight: $font-weight_500;
+}
+
+body {
+    background-color: #9198a3;
 }

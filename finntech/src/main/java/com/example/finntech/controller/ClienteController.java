@@ -1,10 +1,11 @@
 package com.example.finntech.controller;
 
-import com.example.finntech.DTO.ClienteRecordDTO;
+import com.example.finntech.DTO.ClienteAutorizarRecordDTO;
+import com.example.finntech.DTO.ClienteCadastroRecordDTO;
+import com.example.finntech.DTO.ClienteAlterarRecordDTO;
 import com.example.finntech.entity.Conta;
 import com.example.finntech.service.ClienteServiceIMPL;
 import com.example.finntech.entity.Cliente;
-import com.example.finntech.service.ContaServiceIMPL;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,21 @@ import java.util.UUID;
 public class ClienteController {
     @Autowired
     private ClienteServiceIMPL clienteServiceIMPL;
+
+    @GetMapping("/entrar/contas/autorizar")
+    public ResponseEntity<Cliente> autorizar(@RequestBody @Valid ClienteAutorizarRecordDTO clienteRecordDTO) {
+        try {
+            Cliente clienteEncontrado = clienteServiceIMPL.autenticar(clienteRecordDTO.email(), clienteRecordDTO.senha());
+            if(clienteEncontrado == null)
+                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+
+            return new ResponseEntity<>(clienteEncontrado, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @GetMapping("/")
     public ResponseEntity<List<Cliente>> listarTodos() {
@@ -51,7 +67,7 @@ public class ClienteController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Cliente> cadastrar(@RequestBody @Valid ClienteRecordDTO clienteRecordDTO){
+    public ResponseEntity<Boolean> cadastrar(@RequestBody @Valid ClienteCadastroRecordDTO clienteRecordDTO){
         try {
             return new ResponseEntity<>(clienteServiceIMPL.cadastrar(clienteRecordDTO), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -61,7 +77,7 @@ public class ClienteController {
     }
 
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<Cliente> alterar(@RequestBody @Valid ClienteRecordDTO clienteRecordDTO, @PathVariable("id")UUID id) {
+    public ResponseEntity<Cliente> alterar(@RequestBody @Valid ClienteAlterarRecordDTO clienteRecordDTO, @PathVariable("id")UUID id) {
         try {
             return new ResponseEntity<>(clienteServiceIMPL.alterar(clienteRecordDTO, id), HttpStatus.OK);
         } catch (Exception e) {

@@ -1,13 +1,19 @@
-<div class="main">
-    <header>
-        <app-header></app-header>
-    </header>
+<main>
+    <div class="login" *ngIf="!this.usuarioLogado">
+        <app-login (emitirCliente)="receberUser($event)"></app-login>
+    </div>
 
-    <main>
-
-    </main>
-
-    <footer>
-
-    </footer>
-</div>
+    <div class="main" *ngIf="this.usuarioLogado">
+        <header>
+            <app-header></app-header>
+        </header>
+    
+        <main>
+    
+        </main>
+    
+        <footer>
+    
+        </footer>
+    </div>
+</main>

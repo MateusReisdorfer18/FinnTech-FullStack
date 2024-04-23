@@ -1,6 +1,7 @@
 package com.example.finntech.service;
 
-import com.example.finntech.DTO.ClienteRecordDTO;
+import com.example.finntech.DTO.ClienteAlterarRecordDTO;
+import com.example.finntech.DTO.ClienteCadastroRecordDTO;
 import com.example.finntech.entity.Cliente;
 import com.example.finntech.entity.Conta;
 import com.example.finntech.repository.ClienteRepository;
@@ -20,6 +21,16 @@ public class ClienteServiceIMPL {
 
     @Autowired
     private ContaRepository contaRepository;
+
+    public Cliente autenticar(String email, String senha) {
+        try {
+            Optional<Cliente> cliente = clienteRepository.autenticar(email, senha);
+            return cliente.orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public List<Cliente> listarTodos() {
         try {
@@ -53,19 +64,19 @@ public class ClienteServiceIMPL {
         }
     }
 
-    public Cliente cadastrar(ClienteRecordDTO clienteRecordDTO) {
+    public Boolean cadastrar(ClienteCadastroRecordDTO clienteRecordDTO) {
         try {
             Cliente cliente = new Cliente();
             BeanUtils.copyProperties(clienteRecordDTO, cliente);
-            clienteRepository.save(cliente);
-            return cliente;
+            clienteRepository.cadastro(cliente.getNome(), cliente.getEmail(), cliente.getSenha(), cliente.getCpf());
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    public Cliente alterar(ClienteRecordDTO clienteRecordDTO, UUID id) {
+    public Cliente alterar(ClienteAlterarRecordDTO clienteRecordDTO, UUID id) {
         try {
             Optional<Cliente> cliente = clienteRepository.findById(id);
             if(cliente.isEmpty())
