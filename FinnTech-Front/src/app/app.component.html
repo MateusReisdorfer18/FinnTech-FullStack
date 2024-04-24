@@ -1,19 +1,24 @@
-<main>
+<div class="body">
     <div class="login" *ngIf="!this.usuarioLogado">
-        <app-login (emitirCliente)="receberUser($event)"></app-login>
+        <app-login 
+            (emitirCliente)="receberUser($event)"
+            [tela]="this.tela"></app-login>
     </div>
 
     <div class="main" *ngIf="this.usuarioLogado">
         <header>
-            <app-header></app-header>
+            <app-header 
+                [cliente]="this.cliente" 
+                (telaEntrar)="this.telaEntrar()"
+                (telaCadastro)="this.telaCadastro()"></app-header>
         </header>
-    
+
         <main>
-    
+
         </main>
-    
+
         <footer>
-    
+
         </footer>
     </div>
-</main>
+</div>

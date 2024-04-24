@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IUser } from './model/interfaces/IUser';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ICliente } from './model/interfaces/ICliente';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,27 @@ import { IUser } from './model/interfaces/IUser';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'FinnTech';
-  usuarioLogado: boolean = false;
-  user!: IUser;
 
-  receberUser(user: IUser): void {
-    this.user = user;
+  title = 'FinnTech';
+  usuarioLogado: boolean = true;
+  cliente!: ICliente;
+  tela!: String;
+
+  receberUser(cliente: ICliente): void {
+    this.cliente = cliente;
+    
+    if(this.cliente)
+      this.usuarioLogado = !this.usuarioLogado;
+    console.log(this.cliente);
   }
 
-  mostrar(): void {
-    console.log(`
-      Usuario: 
-        email: ${this.user.email},
-        senha: ${this.user.senha}
-    `);
+  telaEntrar(): void {
+    this.usuarioLogado = false;
+    this.tela = "entrar";
+  }
+
+  telaCadastro(): void {
+    this.usuarioLogado = false;
+    this.tela = "cadastro";
   }
 }

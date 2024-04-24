@@ -1,33 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { IConta } from '../../model/interfaces/IConta';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HeaderService } from './header.service';
+import { ICliente } from '../../model/interfaces/ICliente';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
-  nome:String = "Mateus";
-  saldo: Number = 5500;
-  contas!: IConta[];
+export class HeaderComponent {
+  @Input() cliente!: ICliente;
+  @Output() telaEntrar = new EventEmitter();
+  @Output() telaCadastro = new EventEmitter();
 
   constructor(private headerService: HeaderService) {}
 
-  ngOnInit(): void {
-    this.headerService.getAll().subscribe((contas) => this.contas = contas); 
+  mudarTelaEntrar(): void {
+    this.telaEntrar.emit();
   }
 
-  verContas(): void {
-    this.contas.forEach((conta) => {
-      console.log(`
-        Id: ${conta.id}
-        Tipo: ${conta.tipoConta.tipo}
-        Cliente: ${conta.cliente.nome}
-        Numero: ${conta.numero}
-        Saldo: ${conta.saldo}
-        Banco: ${conta.banco.nome}
-        `);
-    });
+  mudarTelaCadastro(): void {
+    this.telaCadastro.emit();
   }
 }

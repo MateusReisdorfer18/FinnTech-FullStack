@@ -1,6 +1,5 @@
 package com.example.finntech.controller;
 
-import com.example.finntech.DTO.ClienteAutorizarRecordDTO;
 import com.example.finntech.DTO.ClienteCadastroRecordDTO;
 import com.example.finntech.DTO.ClienteAlterarRecordDTO;
 import com.example.finntech.entity.Conta;
@@ -21,13 +20,12 @@ public class ClienteController {
     @Autowired
     private ClienteServiceIMPL clienteServiceIMPL;
 
-    @GetMapping("/entrar/contas/autorizar")
-    public ResponseEntity<Cliente> autorizar(@RequestBody @Valid ClienteAutorizarRecordDTO clienteRecordDTO) {
+    @GetMapping("/autorizar/{email}/{senha}")
+    public ResponseEntity<Cliente> autorizar(@PathVariable("email") String email, @PathVariable("senha") String senha) {
         try {
-            Cliente clienteEncontrado = clienteServiceIMPL.autenticar(clienteRecordDTO.email(), clienteRecordDTO.senha());
+            Cliente clienteEncontrado = clienteServiceIMPL.autenticar(email, senha);
             if(clienteEncontrado == null)
-                    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
             return new ResponseEntity<>(clienteEncontrado, HttpStatus.OK);
         } catch (Exception e) {

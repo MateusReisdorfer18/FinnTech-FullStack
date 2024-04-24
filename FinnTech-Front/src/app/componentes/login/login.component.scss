@@ -2,6 +2,7 @@
 .login-cadastro {
     background-color: #f0f0f0;
     width: 30rem;
+    position: relative;
 }
 
 .login-entrar {
@@ -9,6 +10,17 @@
     padding: 1.6rem;
     text-align: center;
     border-radius: .5rem;
+
+    .mensagem-erro {
+        position: absolute;
+        top: -5.5rem;
+        right: 0;
+        border: 1px solid #000;
+        border-radius: .5rem;
+        padding: .5rem;
+        background-color: #e0311d;
+        color: #f0f0f0;
+    }
 
     h2 {
         font-size: 2.5rem;
@@ -52,10 +64,17 @@
             padding: 1rem;
             border-radius: .5rem;
             border: none;
+        }
+
+        .button-confirmar_ativo {
+            margin: .5rem 0 1rem 0;
+            padding: 1rem;
+            border-radius: .5rem;
+            border: none;
             cursor: pointer;
         }
 
-        button:hover {
+        .button-confirmar_ativo:hover {
             transition: .3s;
             scale: 105%;
             color: #000;
@@ -63,7 +82,7 @@
             background-color: #85ff21;
         }
 
-        button:active {
+        .button-confirmar_ativo:active {
             transition: .3s;
             scale: 100%;
         }
@@ -90,7 +109,6 @@
     padding: 1.6rem;
     text-align: center;
     border-radius: .5rem;
-    position: relative;
 
     .voltar {
         position: absolute;
@@ -150,10 +168,17 @@
             padding: 1rem;
             border-radius: .5rem;
             border: none;
+        }
+
+        .button-confirmar_ativo {
+            margin: .5rem 0 1rem 0;
+            padding: 1rem;
+            border-radius: .5rem;
+            border: none;
             cursor: pointer;
         }
 
-        button:hover {
+        .button-confirmar_ativo:hover {
             transition: .3s;
             scale: 105%;
             color: #000;
@@ -161,7 +186,7 @@
             background-color: #85ff21;
         }
 
-        button:active {
+        .button-confirmar_ativo:active {
             transition: .3s;
             scale: 100%;
         }

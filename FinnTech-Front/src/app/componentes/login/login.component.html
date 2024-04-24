@@ -1,16 +1,19 @@
 <div class="login-entrar" *ngIf="this.tela === 'entrar'">
+    <p class="mensagem-erro" *ngIf="this.mensagemErro">Email e/ou senha incorretos  tente novamente</p>
     <h2>Entrar na Conta</h2>
-    <form>
+    <form action="">
         <div>
             <label for="email-entrar">Email</label>
             <input type="text" id="email-entrar" placeholder="Digite seu email" [(ngModel)]="this.emailEntrar" name="email-entrar">
         </div>
         <div>
             <label for="senha-entrar">Senha</label>
-            <input type="text" id="senha-entrar" placeholder="Digite sua senha" [(ngModel)]="this.senhaEntrar" name="senha-entrar">
+            <input type="password" id="senha-entrar" placeholder="Digite sua senha" [(ngModel)]="this.senhaEntrar" name="senha-entrar">
         </div>
         <button 
-            (click)="this.enviarDados()">Confirmar</button>
+            (click)="this.enviarDados()"
+            [disabled]="!this.verificarBotao()"
+            [ngClass]="this.verificarBotao() ? 'button-confirmar_ativo' : 'button-confirmar'">Confirmar</button>
     </form>
     <button class="button-cadastro" (click)="this.mudarTela()">Ainda não tem uma conta? Cadastre-se</button>
 </div>
@@ -19,7 +22,7 @@
         arrow_back
         </span>
     <h2>Cadastro</h2>
-    <form>
+    <form action="">
         <div>
             <label for="nome-cadastro">Nome</label>
             <input type="text" id="nome-cadastro" placeholder="Digite seu nome" [(ngModel)]="this.nomeCadastro" name="nome-cadastro">
@@ -30,12 +33,15 @@
         </div>
         <div>
             <label for="senha-cadastro">Senha</label>
-            <input type="text" id="senha-cadastro" placeholder="Digite sua senha" [(ngModel)]="this.senhaCadastro" name="senha-cadastro">
+            <input type="password" id="senha-cadastro" placeholder="Digite sua senha" [(ngModel)]="this.senhaCadastro" name="senha-cadastro">
         </div>
         <div>
             <label for="cpf-cadastro">Cpf</label>
             <input type="text" id="cpf-cadastro" placeholder="Digite seu cpf" [(ngModel)]="this.cpfCadastro" name="cpf-cadastro">
         </div>
-        <button>Cadastrar</button>
+        <button 
+            (click)="this.enviarDados()"
+            [disabled]="!this.verificarBotao()"
+            [ngClass]="this.verificarBotao() ? 'button-confirmar_ativo' : 'button-confirmar'">Cadastrar</button>
     </form>
 </div>
